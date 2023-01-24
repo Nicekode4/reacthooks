@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function Form() {
     
-    const [form, setForm] = useState({
+    const [form, setForm] = useState({}, {
         name: "Dit navn",
         tel: "Din telefon",
         email: "Din email",
@@ -10,24 +10,9 @@ function Form() {
         checkbox1: false,
         checkbox2: false
     })
-    const updateName = (event) => {
+    const updateForm = (event) => {
         setForm(previousState => {
-          return { ...previousState, name: event.target.value, }
-        });
-      }
-      const updateTel = (event) => {
-        setForm(previousState => {
-          return { ...previousState, tel: event.target.value, }
-        });
-      }
-      const updateEmail = (event) => {
-        setForm(previousState => {
-          return { ...previousState, email: event.target.value, }
-        });
-      }
-      const updateComment = (event) => {
-        setForm(previousState => {
-          return { ...previousState, comment: event.target.value, }
+          return { ...previousState, [event.target.name] : event.target.value, }
         });
       }
       
@@ -57,10 +42,10 @@ function Form() {
   return (
     <>
     <form action="">
-        <input onChange={updateName} type="text" name="name" id="" />
-        <input onChange={updateTel} type="tel" name="tel" id="" />
-        <input onChange={updateEmail} type="email" name="email" id="" />
-        <textarea onChange={updateComment} name="comment" id="" cols="30" rows="10"></textarea>
+        <input onChange={updateForm} type="text" name="name" id="" />
+        <input onChange={updateForm} type="tel" name="tel" id="" />
+        <input onChange={updateForm} type="email" name="email" id="" />
+        <textarea onChange={updateForm} name="comment" id="" cols="30" rows="10"></textarea>
         <label htmlFor="contactViaPhone">contact via Phone</label>
         <input onClick={updateCheck1} type="checkbox" name="contactViaPhone" value={1234} id="" />
         <label htmlFor="contactViaEmail">contact via Email</label>
